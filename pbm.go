@@ -32,7 +32,6 @@ func ReadPBM(filename string) (*PBM, error) {
 	}
 	magicNumber := line
 
-	// Lecture des dimensions
 	for scanner.Scan() {
 		if scanner.Text()[0] == '#' {
 			continue
@@ -46,7 +45,6 @@ func ReadPBM(filename string) (*PBM, error) {
 	height, _ := strconv.Atoi(res[0])
 	width, _ := strconv.Atoi(res[1])
 
-	// Lecture des données binaires
 	var pbm *PBM
 
 	if magicNumber == "P1" {
@@ -82,7 +80,6 @@ func (pbm *PBM) Size() (int, int) {
 	return pbm.width, pbm.height
 }
 
-// At renvoie la valeur du pixel en (x, y).
 func (pbm *PBM) At(x, y int) bool {
 	if len(pbm.data) == 0 || x < 0 || y < 0 || x >= pbm.width || y >= pbm.height {
 		return false
